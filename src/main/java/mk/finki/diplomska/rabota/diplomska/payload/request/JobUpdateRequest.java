@@ -1,42 +1,27 @@
-package mk.finki.diplomska.rabota.diplomska.models;
+package mk.finki.diplomska.rabota.diplomska.payload.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.Entity;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.Map;
 import java.util.Set;
 
-@Entity
-@Table(name="jobs")
-public class Job {
+public class JobUpdateRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(name="title")
     private String title;
 
-    @Column(name="description")
     @Size(min=20,max = 600)
     private String description;
 
 
-
-    @ElementCollection
-    @Column(name="job_skills")
     private Set<String> requiredSkills;
 
-    @ElementCollection
-    @Column(name="job_offer")
     private Set<String> whatWeOffer;
 
-    @ElementCollection
-    @Column(name="job_responsibilities")
     private Set<String> responsibilities;
 
 
@@ -44,23 +29,19 @@ public class Job {
 
     private String location;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
-    Date publicationDateStart;
+    String publicationDateStart;
 
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
-    Date publicationDateEnd;
+   String publicationDateEnd;
 
 
     @Size(max = 50)
     @Email
     private String applyEmail;
 
-    public Job() {
+    public JobUpdateRequest() {
     }
 
-    public Job(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities, String position, String location, Date publicationDateStart, Date publicationDateEnd, @Size(max = 50) @Email String applyEmail) {
+    public JobUpdateRequest(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities, String position, String location, String publicationDateStart, String publicationDateEnd, @Size(max = 50) @Email String applyEmail) {
         this.title = title;
         this.description = description;
         this.requiredSkills = requiredSkills;
@@ -71,14 +52,6 @@ public class Job {
         this.publicationDateStart = publicationDateStart;
         this.publicationDateEnd = publicationDateEnd;
         this.applyEmail = applyEmail;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -96,7 +69,6 @@ public class Job {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     public Set<String> getRequiredSkills() {
         return requiredSkills;
@@ -138,19 +110,19 @@ public class Job {
         this.location = location;
     }
 
-    public Date getPublicationDateStart() {
+    public String getPublicationDateStart() {
         return publicationDateStart;
     }
 
-    public void setPublicationDateStart(Date publicationDateStart) {
+    public void setPublicationDateStart(String publicationDateStart) {
         this.publicationDateStart = publicationDateStart;
     }
 
-    public Date getPublicationDateEnd() {
+    public String getPublicationDateEnd() {
         return publicationDateEnd;
     }
 
-    public void setPublicationDateEnd(Date publicationDateEnd) {
+    public void setPublicationDateEnd(String publicationDateEnd) {
         this.publicationDateEnd = publicationDateEnd;
     }
 

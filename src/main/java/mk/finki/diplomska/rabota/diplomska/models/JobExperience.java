@@ -1,5 +1,7 @@
 package mk.finki.diplomska.rabota.diplomska.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,21 +17,25 @@ public class JobExperience {
     private String CompanyName;
 
     private String jobIsFor;
+    private String description;
 
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
     Date DateStart;
 
     @Temporal(TemporalType.DATE)
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
     Date DateEnd;
 
     public JobExperience() {
     }
 
-    public JobExperience(String companyName, String jobIsFor, Date dateStart, Date dateEnd) {
+    public JobExperience(String companyName, String jobIsFor,String description, Date dateStart, Date dateEnd) {
         CompanyName = companyName;
         this.jobIsFor = jobIsFor;
         DateStart = dateStart;
         DateEnd = dateEnd;
+        this.description=description;
     }
 
     public Long getId() {
@@ -70,5 +76,13 @@ public class JobExperience {
 
     public void setDateEnd(Date dateEnd) {
         DateEnd = dateEnd;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

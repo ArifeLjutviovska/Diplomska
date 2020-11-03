@@ -148,11 +148,14 @@ class StudentRegister extends Component{
 
         const formData = new FormData();
        formData.append('file',e.target.files[0]);
-       AuthService.uploadFile(formData).then((res)=>{
+       console.log(formData);
+       AuthService.uploadFile(formData).then((response)=>{
            this.setState({
-               logo:res.data
+               logo:response.data
            });
-       })
+       });
+
+
 
 
 
@@ -170,6 +173,7 @@ class StudentRegister extends Component{
         });
 
         this.form.validateAll();
+
 
         if (this.checkBtn.context._errors.length === 0) {
             AuthService.studentRegister(
@@ -209,6 +213,7 @@ class StudentRegister extends Component{
         });
 
         this.form.validateAll();
+
 
 
         if (this.checkBtn.context._errors.length === 0) {

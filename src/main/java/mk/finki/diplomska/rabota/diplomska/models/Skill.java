@@ -3,7 +3,9 @@ package mk.finki.diplomska.rabota.diplomska.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="skills")
+@Table(name="skills", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name")
+})
 public class Skill {
 
     @Id

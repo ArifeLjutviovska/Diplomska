@@ -2,6 +2,7 @@ package mk.finki.diplomska.rabota.diplomska.controllers;
 
 
 import mk.finki.diplomska.rabota.diplomska.models.StudentUser;
+import mk.finki.diplomska.rabota.diplomska.payload.request.StudentUpdateModel;
 import mk.finki.diplomska.rabota.diplomska.services.Impl.StudentServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +32,18 @@ public class StudentController {
     @GetMapping("/{name}")
     public StudentUser getStudentByName(@PathVariable("name") String name){
         return this.studentService.findByName(name);
+    }
+
+    //update
+    @PatchMapping("/{id}")
+    public StudentUser studentUpdate(@PathVariable("id") Long id,@RequestBody StudentUpdateModel updateModel){
+        return this.studentService.updateStudent(id,updateModel);
+    }
+
+    //delete
+    @DeleteMapping("/{id}")
+    public String studentDelete(@PathVariable("id") Long id){
+
+        return this.studentService.deleteStudent(id);
     }
 }

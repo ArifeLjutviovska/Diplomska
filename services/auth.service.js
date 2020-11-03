@@ -36,6 +36,14 @@ class AuthService {
         localStorage.removeItem("user");
     }
 
+    userType(email){
+        return axios.get(API_URL+"userType",{
+            params:{
+                email
+            }
+        });
+    }
+
     uploadFile(logo){
         return axios.post("http://localhost:8090/files/uploadFile",logo);
     }

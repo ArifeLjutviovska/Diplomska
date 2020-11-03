@@ -1,5 +1,6 @@
 package mk.finki.diplomska.rabota.diplomska.repository;
 
+import mk.finki.diplomska.rabota.diplomska.models.Skill;
 import mk.finki.diplomska.rabota.diplomska.models.StudentUser;
 import mk.finki.diplomska.rabota.diplomska.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,6 @@ public interface StudentRepository extends JpaRepository<StudentUser,Long> {
     Boolean existsByName(String username);
 
     Boolean existsByEmail(String email);
+
+
 }

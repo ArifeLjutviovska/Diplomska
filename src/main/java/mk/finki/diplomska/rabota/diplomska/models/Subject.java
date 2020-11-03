@@ -6,7 +6,9 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name="subjects")
+@Table(name="subjects", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name")
+})
 public class Subject {
 
     @Id
@@ -18,7 +20,8 @@ public class Subject {
     @Size(min=20,max=300)
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
+    @Column(name="subject_skills")
     private List<Skill> skills;
 
     public Subject() {

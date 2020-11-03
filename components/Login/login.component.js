@@ -23,6 +23,7 @@ export default class StudentLogin extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
+            type:"Student",
             email: "",
             password: "",
             loading: false,
@@ -34,9 +35,15 @@ export default class StudentLogin extends Component {
         this.setState({
             email: e.target.value
         });
+
     }
 
     onChangePassword(e) {
+        AuthService.userType(this.state.email).then((res)=>{
+            this.setState({
+                type:res.data
+            })
+        });
         this.setState({
             password: e.target.value
         });
@@ -50,34 +57,69 @@ export default class StudentLogin extends Component {
             loading: true
         });
 
+        console.log(this.state.type);
+
         this.form.validateAll();
+        if (this.state.type === "Student") {
 
-        if (this.checkBtn.context._errors.length === 0) {
-            AuthService.studentLogin(this.state.email, this.state.password).then(
-                () => {
-                    this.props.history.push("/profile");
-                    window.location.reload();
-                },
-                error => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
 
-                    this.setState({
-                        loading: false,
-                        message: resMessage
-                    });
-                }
-            );
-        } else {
-            this.setState({
-                loading: false
-            });
+            if (this.checkBtn.context._errors.length === 0) {
+
+                AuthService.studentLogin(this.state.email, this.state.password).then(
+                    () => {
+
+                        this.props.history.push("/profile");
+                        window.location.reload();
+                    },
+                    error => {
+                        const resMessage =
+                            (error.response &&
+                                error.response.data &&
+                                error.response.data.message) ||
+                            error.message ||
+                            error.toString();
+
+                        this.setState({
+                            loading: false,
+                            message: resMessage
+                        });
+                    }
+                );
+            } else {
+                this.setState({
+                    loading: false
+                });
+            }
+        }else{
+            if (this.checkBtn.context._errors.length === 0) {
+
+                AuthService.companyLogin(this.state.email, this.state.password).then(
+                    () => {
+                        this.props.history.push("/profile");
+                        window.location.reload();
+                    },
+                    error => {
+                        const resMessage =
+                            (error.response &&
+                                error.response.data &&
+                                error.response.data.message) ||
+                            error.message ||
+                            error.toString();
+
+                        this.setState({
+                            loading: false,
+                            message: resMessage
+                        });
+                    }
+                );
+            } else {
+                this.setState({
+                    loading: false
+                });
+            }
         }
     }
+
 
     render() {
         return (

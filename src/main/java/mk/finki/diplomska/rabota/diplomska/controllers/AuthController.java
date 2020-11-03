@@ -58,6 +58,18 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @GetMapping("/userType")
+    public String getUserType(@RequestParam String email){
+        String res="";
+        StudentUser user=this.studentRepository.findByEmail(email).orElse(null);
+        if(user!=null){
+            res=UserType.Student.toString();
+        }else{
+           res=  UserType.Company.toString();
+        }
+        return res;
+    }
+
     @PostMapping("/studentSignin")
     public ResponseEntity<?> authenticateStudent(@Valid @RequestBody LoginRequest loginRequest) {
 
