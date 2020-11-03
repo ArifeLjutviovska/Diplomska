@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
 
-    @Query("select  case when count(s)>0 then true else false end from Subject s,StudentUser u where s.name like :name and u.id = :id")
-    boolean existByNameStudent(String name,Long id);
+    @Query("select  case when count(s)>0 then true else false end from StudentUser u,Subject s where  u.id = :id and  s.name like :name ")
+    boolean DoesExistByNameStudent(String name,Long id);
 
    Subject findByName(String name);
 

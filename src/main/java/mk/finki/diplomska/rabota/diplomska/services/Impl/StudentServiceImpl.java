@@ -96,7 +96,8 @@ public class StudentServiceImpl implements StudentService {
             List<Subject> subjects=new ArrayList<Subject>();
             List<Skill> subjectSkill=new ArrayList<>();
             model.getSubjects().forEach(s-> {
-                if(!this.subjectRepository.existByNameStudent(s.getName(),user.getId())) {
+                boolean doesExist=user.getSubjects().stream().anyMatch(subject -> subject.getName().equals(s.getName()));
+                if(!doesExist) {
                     if(this.subjectRepository.existsByName(s.getName())){
                         subjects.add(this.subjectRepository.findByName(s.getName()));
                         user.getSkills().addAll(this.subjectRepository.findByName(s.getName()).getSkills());
@@ -123,7 +124,8 @@ public class StudentServiceImpl implements StudentService {
         if(model.getExperience()!=null&&model.getExperience().size()!=0){
             List<JobExperience> experiences=new ArrayList<JobExperience>();
             model.getExperience().forEach(e->{
-                if(this.jobExperienceRepository.findByNameStudent(e.getCompanyName(),e.getJobIsFor(),user.getId())==null){
+                boolean doesExist=user.getExperience().stream().anyMatch(ex->ex.getCompanyName().equals(e.getCompanyName())&&ex.getJobIsFor().equals(e.getJobIsFor())&&ex.getDateStart().equals(e.getDateStart()));
+                if(!doesExist){
                     try {
                         experiences.add(this.jobExperienceRepository.save(new JobExperience(e.getCompanyName(),e.getJobIsFor(),e.getDescription(),new SimpleDateFormat("dd/MM/yyyy").parse(e.getDateStart()),new SimpleDateFormat("dd/MM/yyyy").parse(e.getDateEnd()))));
                     } catch (ParseException ex) {

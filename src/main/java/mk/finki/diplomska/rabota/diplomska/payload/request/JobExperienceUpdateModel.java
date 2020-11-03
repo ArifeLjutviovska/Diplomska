@@ -1,41 +1,30 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 
 public class JobExperienceUpdateModel {
 
-    private String CompanyName;
+    private String companyName;
 
     private String jobIsFor;
     private String description;
 
 
-    String DateStart;
+    String dateStart;
 
-    String DateEnd;
+    String dateEnd;
 
     public JobExperienceUpdateModel() {
     }
 
-    public JobExperienceUpdateModel(String companyName, String jobIsFor, String description, String dateStart, String dateEnd) {
-        CompanyName = companyName;
+    public JobExperienceUpdateModel(String CompanyName, String jobIsFor, String description, String DateStart, String DateEnd) {
+        this.companyName = CompanyName;
         this.jobIsFor = jobIsFor;
         this.description = description;
-        DateStart = dateStart;
-        DateEnd = dateEnd;
+        this.dateStart = DateStart;
+        this.dateEnd = DateEnd;
     }
 
-    public String getCompanyName() {
-        return CompanyName;
-    }
 
-    public void setCompanyName(String companyName) {
-        CompanyName = companyName;
-    }
 
     public String getJobIsFor() {
         return jobIsFor;
@@ -53,19 +42,27 @@ public class JobExperienceUpdateModel {
         this.description = description;
     }
 
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
     public String getDateStart() {
-        return DateStart;
+        return dateStart;
     }
 
     public void setDateStart(String dateStart) {
-        DateStart = dateStart;
+        this.dateStart = dateStart;
     }
 
     public String getDateEnd() {
-        return DateEnd;
+        return dateEnd;
     }
 
     public void setDateEnd(String dateEnd) {
-        DateEnd = dateEnd;
+        this.dateEnd = dateEnd;
     }
 }
