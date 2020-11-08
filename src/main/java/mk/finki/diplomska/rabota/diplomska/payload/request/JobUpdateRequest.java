@@ -1,5 +1,7 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
+import mk.finki.diplomska.rabota.diplomska.models.*;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Temporal;
@@ -7,6 +9,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class JobUpdateRequest {
@@ -14,8 +17,10 @@ public class JobUpdateRequest {
 
     private String title;
 
-    @Size(min=20,max = 600)
+
     private String description;
+
+    private List<Skill> technologies;
 
 
     private Set<String> requiredSkills;
@@ -25,11 +30,10 @@ public class JobUpdateRequest {
     private Set<String> responsibilities;
 
 
-    private String position;
 
-    private String location;
-
+    private Category category;
     String publicationDateStart;
+    private String companyName;
 
    String publicationDateEnd;
 
@@ -38,20 +42,43 @@ public class JobUpdateRequest {
     @Email
     private String applyEmail;
 
+    private City city;
+
+    private JobType jobType;
+
     public JobUpdateRequest() {
     }
 
-    public JobUpdateRequest(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities, String position, String location, String publicationDateStart, String publicationDateEnd, @Size(max = 50) @Email String applyEmail) {
+    public JobUpdateRequest(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities, City city,JobType jobType,String publicationDateStart, String publicationDateEnd, @Size(max = 50) @Email String applyEmail,Category category,String companyName,List<Skill> technologies) {
         this.title = title;
         this.description = description;
         this.requiredSkills = requiredSkills;
         this.whatWeOffer = whatWeOffer;
         this.responsibilities = responsibilities;
-        this.position = position;
-        this.location = location;
         this.publicationDateStart = publicationDateStart;
         this.publicationDateEnd = publicationDateEnd;
         this.applyEmail = applyEmail;
+        this.category=category;
+        this.companyName=companyName;
+        this.city=city;
+        this.jobType=jobType;
+        this.technologies=technologies;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getTitle() {
@@ -94,20 +121,28 @@ public class JobUpdateRequest {
         this.responsibilities = responsibilities;
     }
 
-    public String getPosition() {
-        return position;
+    public City getCity() {
+        return city;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public String getLocation() {
-        return location;
+    public List<Skill> getTechnologies() {
+        return technologies;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setTechnologies(List<Skill> technologies) {
+        this.technologies = technologies;
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
     }
 
     public String getPublicationDateStart() {

@@ -1,6 +1,9 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
+import mk.finki.diplomska.rabota.diplomska.models.Branch;
 import mk.finki.diplomska.rabota.diplomska.models.DBFile;
+import mk.finki.diplomska.rabota.diplomska.models.Language;
+
 import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Set;
@@ -17,11 +20,14 @@ public class StudentUpdateModel {
     private List<SkillsUpdateModel> skills;
     private Set<SubjectsUpdateModel> subjects;
     private List<JobExperienceUpdateModel> experience;
+    private List<Language> languages;
+    private int yearOfStudies;
+    private Branch branch;
 
     public StudentUpdateModel() {
     }
 
-    public StudentUpdateModel(String studentName, @Email String email, String password, DBFile img, DBFile CV, List<SkillsUpdateModel> skills, Set<SubjectsUpdateModel> subjects, List<JobExperienceUpdateModel> experience) {
+    public StudentUpdateModel(String studentName, @Email String email, String password, DBFile img, DBFile CV, List<SkillsUpdateModel> skills, Set<SubjectsUpdateModel> subjects, List<JobExperienceUpdateModel> experience,List<Language> languages,int years,Branch branch) {
         this.studentName = studentName;
         this.email = email;
         this.password = password;
@@ -30,6 +36,25 @@ public class StudentUpdateModel {
         this.skills = skills;
         this.subjects = subjects;
         this.experience = experience;
+        this.languages=languages;
+        this.yearOfStudies=years;
+        this.branch=branch;
+    }
+
+    public int getYearOfStudies() {
+        return yearOfStudies;
+    }
+
+    public void setYearOfStudies(int yearOfStudies) {
+        this.yearOfStudies = yearOfStudies;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public String getStudentName() {
@@ -94,5 +119,13 @@ public class StudentUpdateModel {
 
     public void setExperience(List<JobExperienceUpdateModel> experience) {
         this.experience = experience;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
     }
 }

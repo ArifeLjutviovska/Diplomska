@@ -11,7 +11,7 @@ import java.util.*;
                 @UniqueConstraint(columnNames = "name"),
                 @UniqueConstraint(columnNames = "email")
         })
-public class CompanyUser extends User {
+public class  CompanyUser extends User {
 
     @NotBlank
     @Size(max=20)
@@ -25,9 +25,9 @@ public class CompanyUser extends User {
     @Size(max=50)
     private String Address;
 
-    @NotBlank
-    @Size(max=20)
-    private String City;
+
+    @ManyToOne
+    private City City;
 
     @OneToOne
     private DBFile Logo;
@@ -78,11 +78,12 @@ public class CompanyUser extends User {
         Address = address;
     }
 
-    public String getCity() {
+
+    public City getCity() {
         return City;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         City = city;
     }
 

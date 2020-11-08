@@ -1,29 +1,26 @@
 package mk.finki.diplomska.rabota.diplomska.models;
 
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="skills", uniqueConstraints = {
+@Table(name="categories", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
-public class Skill {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
-    @ManyToMany
-    private List<Category> categoryList;
-
-    public Skill() {
+    public Category() {
     }
 
-    public Skill(String name, List<Category> categories) {
+    public Category(String name) {
         this.name = name;
-        this.categoryList=categories;
+
     }
 
     public Long getId() {
@@ -42,11 +39,5 @@ public class Skill {
         this.name = name;
     }
 
-    public List<Category> getCategoryList() {
-        return categoryList;
-    }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
 }

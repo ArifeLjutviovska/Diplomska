@@ -17,7 +17,7 @@ public class Subject {
 
     private String name;
 
-    @Size(min=20,max=300)
+    @Column(name="description", length=1024)
     private String description;
 
     @ManyToMany
@@ -27,7 +27,7 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(String name, @Size(min = 20, max = 300) String description, List<Skill> skills) {
+    public Subject(String name, String description, List<Skill> skills) {
         this.name = name;
         this.description = description;
         this.skills = skills;

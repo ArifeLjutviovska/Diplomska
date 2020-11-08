@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,11 +22,12 @@ public class Job {
     @Column(name="title")
     private String title;
 
-    @Column(name="description")
-    @Size(min=20,max = 600)
+    @Column(name="description", length=1024)
     private String description;
 
 
+    @ManyToMany
+    private List<Skill> technologies;
 
     @ElementCollection
     @Column(name="job_skills")
@@ -40,9 +42,6 @@ public class Job {
     private Set<String> responsibilities;
 
 
-    private String position;
-
-    private String location;
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
@@ -52,25 +51,55 @@ public class Job {
     @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
     Date publicationDateEnd;
 
+    @ManyToOne
+    Category category;
+
 
     @Size(max = 50)
     @Email
     private String applyEmail;
 
+
+    private String company;
+
+    @ManyToOne
+    private City city;
+
+    private JobType jobType;
+
     public Job() {
     }
 
-    public Job(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities, String position, String location, Date publicationDateStart, Date publicationDateEnd, @Size(max = 50) @Email String applyEmail) {
+    public Job(String title, @Size(min = 20, max = 600) String description, Set<String> requiredSkills, Set<String> whatWeOffer, Set<String> responsibilities,  Date publicationDateStart, Date publicationDateEnd, @Size(max = 50) @Email String applyEmail,Category category,String company,City city,JobType jobType,List<Skill> technologies) {
         this.title = title;
         this.description = description;
         this.requiredSkills = requiredSkills;
         this.whatWeOffer = whatWeOffer;
         this.responsibilities = responsibilities;
-        this.position = position;
-        this.location = location;
         this.publicationDateStart = publicationDateStart;
         this.publicationDateEnd = publicationDateEnd;
         this.applyEmail = applyEmail;
+        this.category=category;
+        this.company=company;
+        this.city=city;
+        this.jobType=jobType;
+        this.technologies=technologies;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {
@@ -122,21 +151,6 @@ public class Job {
         this.responsibilities = responsibilities;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public Date getPublicationDateStart() {
         return publicationDateStart;
@@ -160,5 +174,29 @@ public class Job {
 
     public void setApplyEmail(String applyEmail) {
         this.applyEmail = applyEmail;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
+    }
+
+    public List<Skill> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(List<Skill> technologies) {
+        this.technologies = technologies;
     }
 }

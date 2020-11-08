@@ -3,10 +3,11 @@ package mk.finki.diplomska.rabota.diplomska.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name="students_job_experience")
+@Table(name="job_experience")
 public class JobExperience {
 
     @Id
@@ -16,7 +17,10 @@ public class JobExperience {
 
     private String CompanyName;
 
-    private String jobIsFor;
+    @ManyToOne
+    private Category category;
+
+    @Column(name="description", length=1024)
     private String description;
 
     @Temporal(TemporalType.DATE)
@@ -30,9 +34,9 @@ public class JobExperience {
     public JobExperience() {
     }
 
-    public JobExperience(String companyName, String jobIsFor,String description, Date dateStart, Date dateEnd) {
+    public JobExperience(String companyName, Category category,String description, Date dateStart, Date dateEnd) {
         CompanyName = companyName;
-        this.jobIsFor = jobIsFor;
+        this.category=category;
         DateStart = dateStart;
         DateEnd = dateEnd;
         this.description=description;
@@ -54,12 +58,12 @@ public class JobExperience {
         CompanyName = companyName;
     }
 
-    public String getJobIsFor() {
-        return jobIsFor;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setJobIsFor(String jobIsFor) {
-        this.jobIsFor = jobIsFor;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Date getDateStart() {

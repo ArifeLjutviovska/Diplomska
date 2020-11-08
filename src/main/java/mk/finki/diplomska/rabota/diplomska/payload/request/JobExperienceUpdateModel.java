@@ -1,11 +1,13 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
 
+import mk.finki.diplomska.rabota.diplomska.models.Category;
+
 public class JobExperienceUpdateModel {
 
     private String companyName;
 
-    private String jobIsFor;
+    private Category category;
     private String description;
 
 
@@ -16,22 +18,21 @@ public class JobExperienceUpdateModel {
     public JobExperienceUpdateModel() {
     }
 
-    public JobExperienceUpdateModel(String CompanyName, String jobIsFor, String description, String DateStart, String DateEnd) {
+    public JobExperienceUpdateModel(String CompanyName, Category category, String description, String DateStart, String DateEnd) {
         this.companyName = CompanyName;
-        this.jobIsFor = jobIsFor;
+        this.category=category;
         this.description = description;
         this.dateStart = DateStart;
         this.dateEnd = DateEnd;
     }
 
 
-
-    public String getJobIsFor() {
-        return jobIsFor;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setJobIsFor(String jobIsFor) {
-        this.jobIsFor = jobIsFor;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getDescription() {

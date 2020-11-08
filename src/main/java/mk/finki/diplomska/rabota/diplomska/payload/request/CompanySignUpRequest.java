@@ -1,5 +1,6 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
+import mk.finki.diplomska.rabota.diplomska.models.City;
 import mk.finki.diplomska.rabota.diplomska.models.DBFile;
 
 import javax.validation.constraints.Email;
@@ -37,8 +38,8 @@ public class CompanySignUpRequest {
     private String address;
 
 
-    @Size(max=20)
-    private String city;
+
+    private City city;
 
     private DBFile logo;
 
@@ -67,11 +68,11 @@ public class CompanySignUpRequest {
         this.address = address;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 

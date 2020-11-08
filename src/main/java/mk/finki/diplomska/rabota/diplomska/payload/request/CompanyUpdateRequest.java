@@ -1,5 +1,6 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
+import mk.finki.diplomska.rabota.diplomska.models.City;
 import mk.finki.diplomska.rabota.diplomska.models.DBFile;
 import mk.finki.diplomska.rabota.diplomska.models.Job;
 
@@ -14,14 +15,14 @@ public class CompanyUpdateRequest {
     private String phoneNumber;
     private String contactName;
     private String address;
-    private String city;
+    private City city;
     private DBFile logo;
     private List<JobUpdateRequest> jobs;
 
     public CompanyUpdateRequest() {
     }
 
-    public CompanyUpdateRequest(String companyName, @Email String email, String password, String phoneNumber, String contactName, String address, String city, DBFile logo, List<JobUpdateRequest> jobs) {
+    public CompanyUpdateRequest(String companyName, @Email String email, String password, String phoneNumber, String contactName, String address, City city, DBFile logo, List<JobUpdateRequest> jobs) {
         this.companyName = companyName;
         this.email = email;
         this.password = password;
@@ -81,11 +82,11 @@ public class CompanyUpdateRequest {
         this.address = address;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 

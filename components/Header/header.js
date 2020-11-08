@@ -1,9 +1,13 @@
 import {Link} from "react-router-dom";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import FormSearch from "../FormSearch/FormSearch";
 import "./header.css";
+import AuthService from "../../services/auth.service";
 
 const Header=(props)=>{
+
+
+
 return(
     <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
@@ -11,58 +15,37 @@ return(
         </Link>
         <div className="navbar-nav mr-auto">
             <li className="nav-item">
-                <Link to={"/home"} className="nav-link">
-                    Home
+                <Link to={"/jobs"} className="nav-link">
+                    Огласи
                 </Link>
             </li>
             <li className="nav-item">
-                <Link to={"/groups"} className="nav-link">
-                    Groups
+                <Link to={"/companies"} className="nav-link">
+                   Компании
                 </Link>
             </li>
             <li className="nav-item">
-                <Link to={"/groups/add"} className="nav-link">
-                    Add Group
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to={"/members"} className="nav-link">
-                    Users
+                <Link to={"/students"} className="nav-link">
+                    Студенти
                 </Link>
             </li>
 
 
-
-            {props.admin && (
-                <li className="nav-item">
-                    <Link to={"/admin"} className="nav-link">
-                        Admin Board
-                    </Link>
-                </li>
-            )}
-
-            {props.currentUser && (
-                <li className="nav-item">
-                    <Link to={"/user"} className="nav-link">
-                        User
-                    </Link>
-                </li>
-            )}
-            </div>
+        </div>
 
 
-            {props.currentUser ? (
+        {props.currentUser ? (
 
             <div className="navbar-nav ml-auto">
                 <FormSearch className="nav-item"  onSearch={props.onSearch}/>
                 <li className="nav-item">
                     <Link to={"/profile"} className="nav-link">
-                        {props.currentUser.username}
+                        {props.currentUser.name}
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <a href="/login" className="nav-linkew" onClick={props.onLogOut}>
-                        LogOut
+                    <a href="/login" className="nav-link" onClick={props.onLogOut}>
+                        Одјави се
                     </a>
                 </li>
             </div>
@@ -71,13 +54,13 @@ return(
                 <FormSearch className="nav-item"  onSearch={props.onSearch}/>
                 <li className="nav-item">
                     <Link to={"/login"} className="nav-link">
-                        Login
+                        Најави се
                     </Link>
                 </li>
 
                 <li className="nav-item">
                     <Link to={"/register"} className="nav-link">
-                        Sign Up
+                       Зачлени се
                     </Link>
                 </li>
             </div>

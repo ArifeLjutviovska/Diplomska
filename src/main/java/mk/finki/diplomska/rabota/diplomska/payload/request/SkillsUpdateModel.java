@@ -1,17 +1,21 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
+import mk.finki.diplomska.rabota.diplomska.models.Category;
+
+import java.util.List;
+
 public class SkillsUpdateModel {
 
     private String name;
 
-    private String isFor;//frontend,backend etc.
+    private List<Category> categories;
 
     public SkillsUpdateModel() {
     }
 
-    public SkillsUpdateModel(String name, String isFor) {
+    public SkillsUpdateModel(String name,List<Category> categories) {
         this.name = name;
-        this.isFor = isFor;
+        this.categories=categories;
     }
 
     public String getName() {
@@ -22,11 +26,11 @@ public class SkillsUpdateModel {
         this.name = name;
     }
 
-    public String getIsFor() {
-        return isFor;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setIsFor(String isFor) {
-        this.isFor = isFor;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }

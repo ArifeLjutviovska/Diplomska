@@ -1,10 +1,12 @@
 package mk.finki.diplomska.rabota.diplomska.controllers;
 
 import mk.finki.diplomska.rabota.diplomska.models.CompanyUser;
+import mk.finki.diplomska.rabota.diplomska.models.DBFile;
 import mk.finki.diplomska.rabota.diplomska.payload.request.CompanyUpdateRequest;
 import mk.finki.diplomska.rabota.diplomska.services.Impl.CompanyServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.image.DataBufferFloat;
 import java.util.List;
 
 @RestController
@@ -33,6 +35,10 @@ public class CompanyController {
         return this.companyService.findByName(name);
     }
 
+    @GetMapping("companyLogo")
+    public DBFile getCompanyLogo(@RequestParam String companyName){
+        return this.companyService.getCompanyLogo(companyName);
+    }
     //update
     @PatchMapping("/{id}")
     public CompanyUser updateCompany(@PathVariable("id") Long id,@RequestBody CompanyUpdateRequest updateRequest){

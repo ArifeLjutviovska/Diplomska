@@ -1,6 +1,7 @@
 package mk.finki.diplomska.rabota.diplomska.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,6 +35,14 @@ public class StudentUser extends User{
     @OneToMany
     private List<JobExperience> experience;
 
+    @ManyToMany
+    private List<Language> languages;
+
+
+    private int yearOfStudies;
+
+    @ManyToOne
+    private Branch branch;
     public StudentUser(){
 
     }
@@ -88,5 +97,29 @@ public class StudentUser extends User{
 
     public void setExperience(List<JobExperience> experience) {
         this.experience = experience;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+    }
+
+    public int getYearOfStudies() {
+        return yearOfStudies;
+    }
+
+    public void setYearOfStudies(int yearOfStudies) {
+        this.yearOfStudies = yearOfStudies;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 }
