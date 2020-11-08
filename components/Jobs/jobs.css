@@ -1,0 +1,106 @@
+.job{
+    border: solid lightgray 1px;
+    border-radius: 6px;
+    width: 650px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    display: inline-block;
+}
+.top-jobs{
+    height: 80px;
+
+}
+
+.title-buttons{
+    background-color: white;
+    border-color: white;
+}
+
+.logo-box{
+    width: 230px;
+    margin-top:25px;
+    float: left;
+    height: 160px;
+}
+.content-box{
+    width: 450px;
+    float: right;
+
+
+}
+
+a:link {
+
+
+    text-decoration: none;
+
+
+}
+
+
+a:visited {
+
+
+    text-decoration: none;
+
+
+}
+
+
+a:hover {
+
+
+    text-decoration: none;
+
+
+}
+
+
+a:active {
+
+
+    text-decoration: none;
+
+
+}
+.lg{
+    margin-left: -10px;
+}
+
+.title-box{
+    margin-top: -170px;
+    margin-left: -45px;
+}
+
+.loc-icon{
+    font-size: 16px;
+    color: darkgoldenrod;
+    margin-left: -240px;
+
+}
+.loc-text{
+    color: grey;
+    font-size: 16px;
+    margin-left: 6px;
+    margin-top: 4px;
+
+}
+
+.clock-icon{
+    font-size: 16px;
+    color: darkgoldenrod;
+    margin-left: -58px;
+}
+.clock-text{
+    color: grey;
+    font-size: 16px;
+    margin-left: 6px;
+    margin-top: 4px;
+}
+
+.jobType{
+    margin-left: -230px;
+
+}

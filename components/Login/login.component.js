@@ -57,7 +57,7 @@ export default class StudentLogin extends Component {
             loading: true
         });
 
-        console.log(this.state.type);
+
 
         this.form.validateAll();
         if (this.state.type === "Student") {
@@ -68,7 +68,7 @@ export default class StudentLogin extends Component {
                 AuthService.studentLogin(this.state.email, this.state.password).then(
                     () => {
 
-                        this.props.history.push("/profile");
+                        this.props.history.push("/jobs");
                         window.location.reload();
                     },
                     error => {
@@ -95,7 +95,7 @@ export default class StudentLogin extends Component {
 
                 AuthService.companyLogin(this.state.email, this.state.password).then(
                     () => {
-                        this.props.history.push("/profile");
+                        this.props.history.push("/jobs");
                         window.location.reload();
                     },
                     error => {
@@ -140,7 +140,7 @@ export default class StudentLogin extends Component {
                         }}
                     >
                         <div className="form-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Eмаил</label>
                             <Input
                                 type="text"
                                 className="form-control"
@@ -152,7 +152,7 @@ export default class StudentLogin extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Лозинка</label>
                             <Input
                                 type="password"
                                 className="form-control"
@@ -171,7 +171,7 @@ export default class StudentLogin extends Component {
                                 {this.state.loading && (
                                     <span className="spinner-border spinner-border-sm"></span>
                                 )}
-                                <span>Login</span>
+                                <span>Најави се</span>
                             </button>
                         </div>
 

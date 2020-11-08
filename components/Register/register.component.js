@@ -269,8 +269,8 @@ class StudentRegister extends Component{
                     </div>
 
                         <div className="btns">
-                            <button className="btn-success btn1" onClick={this.companyRegister}>Company</button>
-                            <button className="btn-success btn2" onClick={this.studentRegister}>Student</button>
+                            <button className="btn-success btn1" onClick={this.companyRegister}>Компанија</button>
+                            <button className="btn-success btn2" onClick={this.studentRegister}>Студент</button>
                         </div>
 
                         {this.state.type === "Student" ? (
@@ -288,7 +288,7 @@ class StudentRegister extends Component{
                                     <div>
 
                                         <div className="form-group">
-                                            <label htmlFor="username">Full Name</label>
+                                            <label htmlFor="username">Име и презиме</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -301,7 +301,7 @@ class StudentRegister extends Component{
 
 
                                         <div className="form-group">
-                                            <label htmlFor="email">Email</label>
+                                            <label htmlFor="email">Емаил</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -313,7 +313,7 @@ class StudentRegister extends Component{
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="password">Password</label>
+                                            <label htmlFor="password">Лозинка</label>
                                             <Input
                                                 type="password"
                                                 className="form-control"
@@ -325,7 +325,7 @@ class StudentRegister extends Component{
                                         </div>
 
                                         <div className="form-group">
-                                            <button className="btn btn-primary btn-block">Sign Up</button>
+                                            <button className="btn btn-primary btn-block">Регистрирај се</button>
                                         </div>
                                     </div>
                                 )}
@@ -365,7 +365,7 @@ class StudentRegister extends Component{
                                     <div>
 
                                         <div className="form-group">
-                                            <label htmlFor="username">Company Name</label>
+                                            <label htmlFor="username">Име на компанија</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -378,7 +378,7 @@ class StudentRegister extends Component{
 
 
                                         <div className="form-group">
-                                            <label htmlFor="email">Email</label>
+                                            <label htmlFor="email">Eмаил</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -390,7 +390,7 @@ class StudentRegister extends Component{
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="password">Password</label>
+                                            <label htmlFor="password">Лозинка</label>
                                             <Input
                                                 type="password"
                                                 className="form-control"
@@ -401,9 +401,9 @@ class StudentRegister extends Component{
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="username">Contact Name</label>
-                                            <Input
-                                                type="text"
+                                            <label htmlFor="username">Име на контакт</label>
+                                        <Input
+                                            type="text"
                                                 className="form-control"
                                                 name="contactName"
                                                 value={this.state.contactName}
@@ -412,7 +412,7 @@ class StudentRegister extends Component{
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="username">Contact Phone Number</label>
+                                            <label htmlFor="username">Контакт број</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -423,7 +423,7 @@ class StudentRegister extends Component{
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="username">City</label>
+                                            <label htmlFor="username">Град</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -434,7 +434,7 @@ class StudentRegister extends Component{
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="username">Address</label>
+                                            <label htmlFor="username">Адреса</label>
                                             <Input
                                                 type="text"
                                                 className="form-control"
@@ -453,7 +453,7 @@ class StudentRegister extends Component{
 
 
                                         <div className="form-group">
-                                            <button className="btn btn-primary btn-block">Sign Up</button>
+                                            <button className="btn btn-primary btn-block">Регистрирај се</button>
                                         </div>
                                     </div>
                                 )}
