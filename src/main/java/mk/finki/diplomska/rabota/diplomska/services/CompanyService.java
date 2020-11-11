@@ -16,7 +16,9 @@ public interface CompanyService {
 
     DBFile getCompanyLogo(String companyName);
     CompanyUser findById(Long id);
+    String getCompanyNameByJobId(Long id);
 
+    String companyLogoId(String name);
     CompanyUser findByName(String name);
 
     CompanyUser updateCompany(Long id,CompanyUpdateRequest updateRequest);
@@ -26,6 +28,12 @@ public interface CompanyService {
     ResponseEntity<?> loginCompany(LoginRequest loginRequest);
 
     ResponseEntity<?> registerCompany(CompanySignUpRequest signUpRequest);
+    List<String> getCompanyNames();
 
+    String getLogoSrc(Long jobId);
+
+    byte[] getLogoBytes(Long jobId);
+    String getLogoFileType(Long jobId);
+    DBFile getCompanyLogoByJobId(Long jobId);
 
 }

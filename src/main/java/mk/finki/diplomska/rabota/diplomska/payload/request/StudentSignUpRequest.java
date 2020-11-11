@@ -31,6 +31,51 @@ public class StudentSignUpRequest {
     private DBFile img;
     private DBFile CV;
 
+    private String  pol;
+    private String city;
+    private String address;
+    private String contactEmail;
+    private String contactPhone;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getPol() {
+        return pol;
+    }
+
+    public void setPol(String pol) {
+        this.pol = pol;
+    }
 
     public DBFile getImg() {
         return img;

@@ -37,12 +37,30 @@ public class CompanySignUpRequest {
     @Size(max=50)
     private String address;
 
+    private String description;
+    private String link;
+
 
 
     private City city;
 
     private DBFile logo;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;

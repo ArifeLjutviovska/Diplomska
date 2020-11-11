@@ -17,6 +17,8 @@ public class  CompanyUser extends User {
     @Size(max=20)
     private String phoneNumber;
 
+    private String companyDescription;
+
     @NotBlank
     @Size(max=30)
     private String ContactName;
@@ -38,6 +40,12 @@ public class  CompanyUser extends User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @Column(name="website_link")
+    private String linkToWebSite;
+
+    @Column(name="aboutUs", length=2048)
+    private String aboutUs;
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(	name = "company_jobs",
             joinColumns = @JoinColumn(name = "company_id"),
@@ -52,6 +60,14 @@ public class  CompanyUser extends User {
         super(UserType.Company, username, email, password);
 
 
+    }
+
+    public String getCompanyDescription() {
+        return companyDescription;
+    }
+
+    public void setCompanyDescription(String companyDescription) {
+        this.companyDescription = companyDescription;
     }
 
     public String getPhoneNumber() {
@@ -109,5 +125,21 @@ public class  CompanyUser extends User {
 
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public String getLinkToWebSite() {
+        return linkToWebSite;
+    }
+
+    public void setLinkToWebSite(String linkToWebSite) {
+        this.linkToWebSite = linkToWebSite;
+    }
+
+    public String getAboutUs() {
+        return aboutUs;
+    }
+
+    public void setAboutUs(String aboutUs) {
+        this.aboutUs = aboutUs;
     }
 }

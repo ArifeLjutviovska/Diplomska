@@ -1,9 +1,8 @@
 package mk.finki.diplomska.rabota.diplomska.payload.request;
 
-import mk.finki.diplomska.rabota.diplomska.models.Branch;
-import mk.finki.diplomska.rabota.diplomska.models.DBFile;
-import mk.finki.diplomska.rabota.diplomska.models.Language;
+import mk.finki.diplomska.rabota.diplomska.models.*;
 
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Set;
@@ -23,11 +22,17 @@ public class StudentUpdateModel {
     private List<Language> languages;
     private int yearOfStudies;
     private Branch branch;
+    private String  pol;
+    private String contactEmail;
+    private String contactPhone;
+    private String address;
+    private String summary;
+    private String city;
 
     public StudentUpdateModel() {
     }
 
-    public StudentUpdateModel(String studentName, @Email String email, String password, DBFile img, DBFile CV, List<SkillsUpdateModel> skills, Set<SubjectsUpdateModel> subjects, List<JobExperienceUpdateModel> experience,List<Language> languages,int years,Branch branch) {
+    public StudentUpdateModel(String studentName, @Email String email, String password, DBFile img, DBFile CV, List<SkillsUpdateModel> skills, Set<SubjectsUpdateModel> subjects, List<JobExperienceUpdateModel> experience,List<Language> languages,int years,Branch branch,String pol,String contactEmail,String contactPhone,String address,String city,String summary) {
         this.studentName = studentName;
         this.email = email;
         this.password = password;
@@ -39,6 +44,60 @@ public class StudentUpdateModel {
         this.languages=languages;
         this.yearOfStudies=years;
         this.branch=branch;
+        this.pol=pol;
+        this.city=city;
+        this.contactEmail=contactEmail;
+        this.contactPhone=contactPhone;
+        this.address=address;
+        this.summary=summary;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPol() {
+        return pol;
+    }
+
+    public void setPol(String pol) {
+        this.pol = pol;
     }
 
     public int getYearOfStudies() {

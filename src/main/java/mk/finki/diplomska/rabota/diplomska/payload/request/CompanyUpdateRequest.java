@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CompanyUpdateRequest {
     private String companyName;
+    private String companyDescription;
     @Email
     private String email;
     private String password;
@@ -18,11 +19,13 @@ public class CompanyUpdateRequest {
     private City city;
     private DBFile logo;
     private List<JobUpdateRequest> jobs;
+    private String aboutUs;
+    private String linkToWebsite;
 
     public CompanyUpdateRequest() {
     }
 
-    public CompanyUpdateRequest(String companyName, @Email String email, String password, String phoneNumber, String contactName, String address, City city, DBFile logo, List<JobUpdateRequest> jobs) {
+    public CompanyUpdateRequest(String companyName, @Email String email, String password, String phoneNumber, String contactName, String address, City city, DBFile logo, List<JobUpdateRequest> jobs,String link,String aboutUs,String desc) {
         this.companyName = companyName;
         this.email = email;
         this.password = password;
@@ -32,6 +35,33 @@ public class CompanyUpdateRequest {
         this.city = city;
         this.logo = logo;
         this.jobs = jobs;
+        this.linkToWebsite=link;
+        this.aboutUs=aboutUs;
+        this.companyDescription=desc;
+    }
+
+    public String getCompanyDescription() {
+        return companyDescription;
+    }
+
+    public void setCompanyDescription(String companyDescription) {
+        this.companyDescription = companyDescription;
+    }
+
+    public String getAboutUs() {
+        return aboutUs;
+    }
+
+    public void setAboutUs(String aboutUs) {
+        this.aboutUs = aboutUs;
+    }
+
+    public String getLinkToWebsite() {
+        return linkToWebsite;
+    }
+
+    public void setLinkToWebsite(String linkToWebsite) {
+        this.linkToWebsite = linkToWebsite;
     }
 
     public String getCompanyName() {

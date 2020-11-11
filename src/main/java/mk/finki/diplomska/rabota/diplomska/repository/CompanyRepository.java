@@ -3,6 +3,7 @@ package mk.finki.diplomska.rabota.diplomska.repository;
 import mk.finki.diplomska.rabota.diplomska.models.CompanyUser;
 import mk.finki.diplomska.rabota.diplomska.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface CompanyRepository extends JpaRepository<CompanyUser,Long> {
     Boolean existsByName(String username);
 
     Boolean existsByEmail(String email);
+
+
 
 
 }

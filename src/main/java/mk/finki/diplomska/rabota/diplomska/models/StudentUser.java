@@ -1,7 +1,7 @@
 package mk.finki.diplomska.rabota.diplomska.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,17 +38,77 @@ public class StudentUser extends User{
     @ManyToMany
     private List<Language> languages;
 
+    private Gender gender;
 
     private int yearOfStudies;
 
     @ManyToOne
     private Branch branch;
+
+    @Email
+    private String contactEmail;
+    private String contactPhone;
+    private String address;
+    @Column(name="summary", length=2048)
+    private String summary;
+
+    @ManyToOne
+    private City city;
+
     public StudentUser(){
 
     }
 
     public StudentUser(String username, String email, String password){
         super(UserType.Student,username,email,password);
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public DBFile getImg() {

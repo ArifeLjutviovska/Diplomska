@@ -4,6 +4,7 @@ import mk.finki.diplomska.rabota.diplomska.models.*;
 import mk.finki.diplomska.rabota.diplomska.models.exceptions.CityNotFoundException;
 import mk.finki.diplomska.rabota.diplomska.models.exceptions.CompanyNotFoundException;
 import mk.finki.diplomska.rabota.diplomska.models.exceptions.InvalidEmailException;
+import mk.finki.diplomska.rabota.diplomska.models.exceptions.JobNotFoundException;
 import mk.finki.diplomska.rabota.diplomska.payload.request.CompanySignUpRequest;
 import mk.finki.diplomska.rabota.diplomska.payload.request.CompanyUpdateRequest;
 import mk.finki.diplomska.rabota.diplomska.payload.request.LoginRequest;
@@ -15,6 +16,7 @@ import mk.finki.diplomska.rabota.diplomska.security.services.UserDetailsImpl;
 import mk.finki.diplomska.rabota.diplomska.services.CompanyService;
 import mk.finki.diplomska.rabota.diplomska.services.DBFileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -86,6 +88,18 @@ public class CompanyServiceImpl  implements CompanyService {
     }
 
     @Override
+    public String getCompanyNameByJobId(Long id) {
+        Job job=this.jobRepository.findById(id).orElseThrow(JobNotFoundException::new);
+        return job.getCompany();
+    }
+
+    @Override
+    public String companyLogoId(String name) {
+        CompanyUser user=this.companyRepository.findByName(name).orElseThrow(CompanyNotFoundException::new);
+        return user.getLogo().getId();
+    }
+
+    @Override
     public CompanyUser findByName(String name) {
         return this.companyRepository.findByName(name).orElseThrow(CompanyNotFoundException::new);
     }
@@ -124,6 +138,16 @@ public class CompanyServiceImpl  implements CompanyService {
                 user.setAddress(updateRequest.getAddress());
             }
         }
+        if(updateRequest.getAboutUs()!=null) {
+            if (!updateRequest.getAboutUs().equals(user.getAboutUs())) {
+                user.setAboutUs(updateRequest.getAboutUs());
+            }
+        }
+        if(updateRequest.getLinkToWebsite()!=null) {
+            if (!updateRequest.getLinkToWebsite().equals(user.getLinkToWebSite())) {
+                user.setLinkToWebSite(updateRequest.getLinkToWebsite());
+            }
+        }
         if(updateRequest.getCompanyName()!=null) {
             if (!updateRequest.getCompanyName().equals(user.getName())) {
                 user.setName(updateRequest.getCompanyName());
@@ -134,15 +158,20 @@ public class CompanyServiceImpl  implements CompanyService {
                 user.setEmail(updateRequest.getEmail());
             }
         }
+
+        if(updateRequest.getCompanyDescription()!=null) {
+            if (!updateRequest.getCompanyDescription().equals(user.getCompanyDescription())) {
+                user.setCompanyDescription(updateRequest.getCompanyDescription());
+            }
+        }
         if(updateRequest.getPassword()!=null) {
             if (!updateRequest.getPassword().equals(user.getPassword())) {
                 user.setPassword(updateRequest.getPassword());
             }
         }
         if(updateRequest.getJobs()!=null&&updateRequest.getJobs().size()!=0) {
-            List<Job> jobs=new ArrayList<Job>();
+            List<Job> jobs=new ArrayList<>();
                    updateRequest.getJobs().forEach(j-> {
-                       CompanyUser companyUser=this.companyRepository.findByName(j.getCompanyName()).orElseThrow(CompanyNotFoundException::new);
                          List<Skill> techs=new ArrayList<>();
                            City city;
                            if(this.citiesRepository.existsByName(j.getCity().getName())){
@@ -151,12 +180,14 @@ public class CompanyServiceImpl  implements CompanyService {
                                city=this.citiesRepository.save(new City(j.getCity().getName()));
                            }
 
-                           List<Category> skillCat=new ArrayList<>();
+
                            j.getTechnologies().forEach(t->{
                                if(this.skillsRepository.existsByName(t.getName())){
                                    techs.add(this.skillsRepository.findByName(t.getName()));
                                }else{
+                                   List<Category> skillCat=new ArrayList<>();
                                    t.getCategoryList().forEach(cat->{
+
                                        if(this.categoryRepository.existsByName(cat.getName())){
                                            skillCat.add(this.categoryRepository.findByName(cat.getName()));
                                        }else{
@@ -295,12 +326,57 @@ public class CompanyServiceImpl  implements CompanyService {
 
         DBFile logo=this.dbFileStorageService.getFile(signUpRequest.getLogo().getId());
         user.setLogo(logo);
+        user.setCompanyDescription(signUpRequest.getDescription());
+        user.setLinkToWebSite(signUpRequest.getLink());
 
 
 
         companyRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("Company registered successfully!"));
+    }
+
+    @Override
+    public List<String> getCompanyNames() {
+        return this.companyRepository.findAll().stream().map(User::getName).collect(Collectors.toList());
+    }
+
+    @Override
+    public String getLogoSrc(Long jobId) {
+        Job job=this.jobRepository.findById(jobId).orElseThrow(JobNotFoundException::new);
+        CompanyUser user=this.companyRepository.findByName(job.getCompany()).orElseThrow(CompanyNotFoundException::new);
+        DBFile logo=user.getLogo();
+        String src="";
+        byte[] bytes=logo.getData();
+        if(logo.getFiletype().equals("image/png")){
+            src="data:image/png;base64,"+bytes;
+        }else{
+            src="data:image/jpeg;base64,"+bytes;
+        }
+        return src;
+    }
+
+    @Override
+    public byte[] getLogoBytes(Long jobId) {
+        Job job=this.jobRepository.findById(jobId).orElseThrow(JobNotFoundException::new);
+        CompanyUser user=this.companyRepository.findByName(job.getCompany()).orElseThrow(CompanyNotFoundException::new);
+        DBFile logo=user.getLogo();
+        return logo.getData();
+    }
+
+    @Override
+    public String getLogoFileType(Long jobId) {
+        Job job=this.jobRepository.findById(jobId).orElseThrow(JobNotFoundException::new);
+        CompanyUser user=this.companyRepository.findByName(job.getCompany()).orElseThrow(CompanyNotFoundException::new);
+        DBFile logo=user.getLogo();
+        return logo.getFiletype();
+    }
+
+    @Override
+    public DBFile getCompanyLogoByJobId(Long jobId) {
+        Job job=this.jobRepository.findById(jobId).orElseThrow(JobNotFoundException::new);
+        CompanyUser user=this.companyRepository.findByName(job.getCompany()).orElseThrow(CompanyNotFoundException::new);
+        return user.getLogo();
     }
 
 

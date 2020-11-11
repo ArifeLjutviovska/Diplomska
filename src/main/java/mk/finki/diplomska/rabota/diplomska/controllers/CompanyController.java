@@ -21,6 +21,11 @@ public class CompanyController {
     }
 
 
+
+    @GetMapping("/companyNames")
+    public List<String> getCompanyNames(){
+        return this.companyService.getCompanyNames();
+    }
     @GetMapping
     public List<CompanyUser> getAllCompanies(){
         return this.companyService.getAllCompanies();
@@ -35,9 +40,21 @@ public class CompanyController {
         return this.companyService.findByName(name);
     }
 
-    @GetMapping("companyLogo")
+    @GetMapping("/companyLogo")
     public DBFile getCompanyLogo(@RequestParam String companyName){
         return this.companyService.getCompanyLogo(companyName);
+    }
+    @GetMapping("/logoSrc")
+    public String getLogoSrc(@RequestParam Long jobId){
+        return this.companyService.getLogoSrc(jobId);
+    }
+    @GetMapping("/companyLogoId")
+    public String getLogoId(@RequestParam String companyName){
+        return this.companyService.companyLogoId(companyName);
+    }
+    @GetMapping("/companyByJobId")
+    public String getCompanyByJob(@RequestParam Long id){
+        return this.companyService.getCompanyNameByJobId(id);
     }
     //update
     @PatchMapping("/{id}")
@@ -49,5 +66,18 @@ public class CompanyController {
     @DeleteMapping("/{id}")
     public String deleteCompany(@PathVariable("id") Long id){
         return this.companyService.deleteCompany(id);
+    }
+
+    @GetMapping("/logoBytes/{jobId}")
+    public byte[] gettLogoBytesOfCompany(@PathVariable("jobId") Long id){
+        return this.companyService.getLogoBytes(id);
+    }
+    @GetMapping("/logoFileType/{jobId}")
+    public String getLogoFileTypeOfCompany(@PathVariable("jobId") Long id){
+        return this.companyService.getLogoFileType(id);
+    }
+    @GetMapping("/logo/{jobId}")
+    public DBFile getLogoOfCompany(@PathVariable("jobId") Long id){
+        return this.companyService.getCompanyLogoByJobId(id);
     }
 }
